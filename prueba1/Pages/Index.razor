@@ -1,0 +1,126 @@
+﻿@page "/"
+
+<h1 class="py-5 text-center">Panel de Control</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <!-- Sección para Agregar, Editar y Eliminar Activos -->
+            <div>
+                <h4 class="p-5">Administrar Activos</h4>
+                <!-- Botones para Agregar, Editar y Eliminar Activos -->
+                <button class="btn btn-primary" @onclick="AgregarActivo">Agregar Activo</button>
+                <button class="btn btn-secondary" @onclick="EditarActivo">Editar Activo</button>
+                <button class="btn btn-danger" @onclick="EliminarActivo">Eliminar Activo</button>
+            </div>
+            @if (mostrarFormulario)
+            {
+                <div>
+                    <h4>Formulario para Agregar Activo</h4>
+                    <form id="formregistro">
+                        <div class="form-group">
+                            <label for="nomActi">Nombre del Activo:</label>
+                            <input type="text" name="nomActi" class="form-control" id="nomActi" />
+                        </div>
+                        <div class="form-group">
+                            <label for="tipAct">Tipo de Activo:</label>
+                            <input type="text" name="tipAct" class="form-control" id="tipAct" />
+                        </div>
+                        <div class="form-group">
+                            <label for="ubiActi">Ubicación del Activo:</label>
+                            <input type="text" name="ubiActi" class="form-control" id="ubiActi" />
+                        </div>
+                        <div class="form-group">
+                            <label for="estadoVenta">Estado de Venta:</label>
+                            <input type="text" name="estadoVenta" class="form-control" id="estadoVenta" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fechVenta">Fecha de Venta:</label>
+                            <input type="date" name="fechVenta" class="form-control" id="fechVenta" />
+                        </div>
+                        <div class="form-group">
+                            <label for="valor">Valor:</label>
+                            <input type="number" class="form-control" id="valor" step="0.01" />
+                        </div>
+                        <button type="button" class="btn btn-success" @onclick="Guardar">Guardar</button>
+                    </form>
+                </div>
+            }
+        </div>
+        <div class="col-md-6">
+            <!-- Listas (Tablas) para Mostrar Contenido -->
+            <div>
+                <h4 class="" id="listAct" name="listAct">Lista de Activos</h4>
+                <!-- Aquí puedes mostrar una tabla o lista de activos -->
+                <!-- Ejemplo de tabla de activos -->
+                <table class="table table-striped" id="tblAct">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se mostrarían los activos -->
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool mostrarFormulario = false;
+    private string nomActi;
+    private string tipAct;
+    private string ubiActi;
+    private string estadoVenta;
+    private DateTime fechaVenta;
+    private decimal valor;
+
+
+
+
+
+    private void MostrarFormulario()
+    {
+        mostrarFormulario = !mostrarFormulario;
+    }
+    // Lógica para agregar un activo
+
+    private void Guardar()
+    {
+        // Aquí puedes realizar la inserción de los datos en la base de datos o en tu lógica de aplicación
+        // Utiliza los valores de las propiedades nomActi, tipAct, ubiActi, estadoVenta, fechaVenta y valor
+        // para realizar la inserción
+
+        // Después de realizar la inserción, puedes realizar otras acciones si es necesario
+
+        // Finalmente, oculta el formulario
+        mostrarFormulario = false;
+
+        // Limpia los campos del formulario
+        nomActi = string.Empty;
+        tipAct = string.Empty;
+        ubiActi = string.Empty;
+        estadoVenta = string.Empty;
+        fechaVenta = DateTime.Now;
+        valor = 0;
+    }
+    private void AgregarActivo()
+    {
+        MostrarFormulario();
+    }
+
+    private void EditarActivo()
+    {
+        // Implementa la lógica para editar un activo aquí
+    }
+
+    private void EliminarActivo()
+    {
+        // Implementa la lógica para eliminar un activo aquí
+    }
+}
